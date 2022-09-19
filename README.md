@@ -75,3 +75,21 @@ See [SECURITY.md](SECURITY.md)
 
 See [CITATION](CITATION) and [CITATION.cff](CITATION.cff)
 
+## K2 `ubuntu-full` GDAL docker image build recipe with Teigha/ODA
+
+1. Put the ODA package files in a folder in  `docker/ubuntu-full/`, e.g. `docker/ubuntu-full/teigha_238`
+
+2. There should be, for instance, these files:
+
+```
+Architecture_lnxX64_7.2dll_23.8.tar.gz
+Drawings_lnxX64_7.2dll_23.8.tar.gz
+Kernel_lnxX64_7.2dll_23.8.tar.gz
+OdActivationInfo
+```
+
+3. Make sure that the ODA filenames that are getting copied are correct in the Dockerfile.
+
+4. cd to `/docker/ubuntu-full` and run:
+
+`./build.sh --release --gdal v3.5.2 --proj master --tag gdal-v3.5.2-with-teigha-23.8`
