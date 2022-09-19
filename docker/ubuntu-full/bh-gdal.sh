@@ -12,6 +12,19 @@ if [ -z "${GDAL_BUILD_IS_RELEASE:-}" ]; then
     export GDAL_SHA1SUM=${GDAL_VERSION}
 fi
 
+#################### ADD THIS ####################
+TEIGHA_PATH=/base_7.2
+
+mkdir $TEIGHA_PATH
+tar xvzf Kernel_lnxX64_7.2dll.tar.gz -C $TEIGHA_PATH
+tar xvzf Drawings_lnxX64_7.2dll.tar.gz -C $TEIGHA_PATH
+
+cp OdActivationInfo $TEIGHA_PATH
+
+cp -rf $TEIGHA_PATH/bin/lnxX64_7.2dll/* /build_thirdparty/lib
+#################### END HERE ####################
+
+
 mkdir gdal
 wget -q "https://github.com/${GDAL_REPOSITORY}/archive/${GDAL_VERSION}.tar.gz" \
     -O - | tar xz -C gdal --strip-components=1
@@ -61,7 +74,9 @@ wget -q "https://github.com/${GDAL_REPOSITORY}/archive/${GDAL_VERSION}.tar.gz" \
         -DPROJ_INCLUDE_DIR="/build${PROJ_INSTALL_PREFIX-/usr/local}/include" \
         -DPROJ_LIBRARY="/build${PROJ_INSTALL_PREFIX-/usr/local}/lib/libinternalproj.so" \
         -DGDAL_USE_TIFF_INTERNAL=ON \
-        -DGDAL_USE_GEOTIFF_INTERNAL=ON ${GDAL_CMAKE_EXTRA_OPTS}
+        -DGDAL_USE_GEOTIFF_INTERNAL=ON ${GDAL_CMAKE_EXTRA_OPTS} \
+        -DTEIGHA_ROOT="${TEIGHA_PATH}" \
+        -DGDAL_USE_TEIGHA=ON
 
     make "-j$(nproc)"
     make install DESTDIR="/build"
