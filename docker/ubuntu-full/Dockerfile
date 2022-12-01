@@ -275,7 +275,7 @@ FROM $TARGET_BASE_IMAGE as runner
 
 USER root
 RUN date
-ARG JAVA_VERSION=11
+ARG JAVA_VERSION=17
 
 # Update distro
 RUN apt-get update -y && apt-get upgrade -y
