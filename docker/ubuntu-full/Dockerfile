@@ -309,12 +309,7 @@ RUN apt-get update \
     && wget https://apache.jfrog.io/artifactory/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y -V ./apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb \
     && apt-get update \
-<<<<<<< HEAD
     && DEBIAN_FRONTEND=noninteractive apt-get install -y -V libarrow1000 libparquet1000 libarrow-dataset1000 \
-=======
-    # Note that libparquet needs to be upgraded from 800 to 900
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y -V libarrow800 libparquet900 \
->>>>>>> 38a785d8ed... Build recipe for Teigha/ODA
     && rm -rf /var/lib/apt/lists/*
 
 # Attempt to order layers starting with less frequently varying ones
