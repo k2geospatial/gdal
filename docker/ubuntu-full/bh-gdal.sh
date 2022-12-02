@@ -21,6 +21,7 @@ tar xvzf Drawings_lnxX64_7.2dll.tar.gz -C $TEIGHA_PATH
 
 cp OdActivationInfo $TEIGHA_PATH
 
+mkdir -p /build_thirdparty/lib
 cp -rf $TEIGHA_PATH/bin/lnxX64_7.2dll/* /build_thirdparty/lib
 #################### END HERE ####################
 

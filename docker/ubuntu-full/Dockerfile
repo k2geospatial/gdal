@@ -227,7 +227,7 @@ RUN . /buildscripts/bh-set-envvars.sh \
     && wget https://apache.jfrog.io/artifactory/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y -V ./apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb \
     && apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y -V libarrow-dev${APT_ARCH_SUFFIX}=10.0.0-1 libparquet-dev${APT_ARCH_SUFFIX}=10.0.0-1 libarrow-dataset-dev${APT_ARCH_SUFFIX}=10.0.0-1 \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y -V libarrow-dev${APT_ARCH_SUFFIX}=10.0.1-1 libparquet-dev${APT_ARCH_SUFFIX}=10.0.1-1 libarrow-dataset-dev${APT_ARCH_SUFFIX}=10.0.1-1 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update -y \
@@ -315,6 +315,7 @@ RUN apt-get update \
 # Attempt to order layers starting with less frequently varying ones
 
 COPY --from=builder  /build_thirdparty/usr/ /usr/
+COPY --from=builder  /build_thirdparty/lib/ /lib/
 
 ARG PROJ_INSTALL_PREFIX=/usr/local
 COPY --from=builder  /tmp/proj_grids/* ${PROJ_INSTALL_PREFIX}/share/proj/
