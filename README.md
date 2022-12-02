@@ -94,6 +94,10 @@ COPY ./teigha_238/Kernel_lnxX64_7.2dll_23.8.tar.gz Kernel_lnxX64_7.2dll.tar.gz
 COPY ./teigha_238/OdActivationInfo OdActivationInfo
 ```
 
+3. If you are running on your VPS, you might want to build the image directly in the docker env of your Minikube, where it will be directly available:
+
+`eval $(minikube docker-env)`
+
 4. `cd` to `/docker/ubuntu-full` and run:
 
 `./build.sh --release --gdal v3.5.2 --proj master --tag gdal-v3.5.2-with-teigha-23.8`
