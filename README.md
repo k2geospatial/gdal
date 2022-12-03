@@ -100,4 +100,15 @@ COPY ./teigha_238/OdActivationInfo OdActivationInfo
 
 4. `cd` to `/docker/ubuntu-full` and run:
 
-`./build.sh --release --gdal v3.5.2 --proj master --tag gdal-v3.5.2-with-teigha-23.8`
+`./build.sh --release --gdal v3.6.0 --proj master --tag gdal-v3.6.0-with-teigha-23.8-java17`
+
+5. Change the repository from `osgeo/gdal` to `k2geospatial/dev`:
+
+`docker tag <image_hash> k2geospatial/dev:ubuntu-full-gdal-v3.6.0-with-teigha-23.8-java17`
+
+6. Publish on our Docker Hub repo:
+
+```
+docker login --username=k2geo
+docker push k2geospatial/dev:ubuntu-full-gdal-v3.6.0-with-teigha-23.8-java17
+```
