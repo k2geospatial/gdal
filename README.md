@@ -70,3 +70,41 @@ See [SECURITY.md](SECURITY.md)
 
 See [CITATION](CITATION) and [CITATION.cff](CITATION.cff)
 
+## K2 `ubuntu-full` GDAL docker image build recipe with Teigha/ODA
+
+1. Put the files in a folder inside the `ubuntu-full` folder, e.g. `docker/ubuntu-full/teigha_248`:
+
+```
+docker/ubuntu-full/teigha_248/Architecture_lnxX64_8.3dll_24.8.tar.gz
+docker/ubuntu-full/teigha_248/Drawings_lnxX64_8.3dll_24.8.tar.gz
+docker/ubuntu-full/teigha_248/Kernel_lnxX64_8.3dll_24.8.tar.gz
+docker/ubuntu-full/teigha_248/OdActivationInfo
+```
+
+2. Make sure that the files are properly copied in the Dockerfile:
+
+```
+COPY ./teigha_248/Architecture_lnxX64_8.3dll_24.8.tar.gz Architecture_lnxX64_8.3dll.tar.gz
+COPY ./teigha_248/Drawings_lnxX64_8.3dll_24.8.tar.gz Drawings_lnxX64_8.3dll.tar.gz
+COPY ./teigha_248/Kernel_lnxX64_8.3dll_24.8.tar.gz Kernel_lnxX64_8.3dll.tar.gz
+COPY ./teigha_248/OdActivationInfo OdActivationInfo
+```
+
+3. If you are running on your VPS, you might want to build the image directly in the docker env of your Minikube, where it will be directly available:
+
+`eval $(minikube docker-env)`
+
+4. `cd` to `/docker/ubuntu-full` and run:
+
+`./build.sh --release --gdal v3.7.2 --proj master --tag gdal-v3.7.2-with-teigha-24.8-java17`
+
+5. Change the repository from `osgeo/gdal` to `k2geospatial/dev`:
+
+`docker tag <image_hash> k2geospatial/dev:ubuntu-full-gdal-v3.7.2-with-teigha-24.8-java17`
+
+6. Publish on our Docker Hub repo:
+
+```
+docker login --username=k2geo
+docker push k2geospatial/dev:ubuntu-full-gdal-v3.7.2-with-teigha-24.8-java17
+```

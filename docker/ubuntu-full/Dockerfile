@@ -272,6 +272,15 @@ ARG GDAL_RELEASE_DATE
 ARG GDAL_BUILD_IS_RELEASE
 ARG GDAL_REPOSITORY=OSGeo/gdal
 
+##################### K2-modif ###################
+
+COPY ./teigha_248/Architecture_lnxX64_8.3dll_24.8.tar.gz Architecture_lnxX64_8.3dll.tar.gz
+COPY ./teigha_248/Kernel_lnxX64_8.3dll_24.8.tar.gz Kernel_lnxX64_8.3dll.tar.gz
+COPY ./teigha_248/Drawings_lnxX64_8.3dll_24.8.tar.gz Drawings_lnxX64_8.3dll.tar.gz
+COPY ./teigha_248/OdActivationInfo OdActivationInfo
+
+##################################################
+
 # Build GDAL
 
 COPY ./bh-gdal.sh /buildscripts/bh-gdal.sh
@@ -315,6 +324,8 @@ RUN apt-get update \
         python3-pil \
     # Workaround bug in ogdi packaging
     && ln -s /usr/lib/ogdi/libvrf.so /usr/lib \
+    # Workaround to make JNI work
+    && ln -s /usr/share/java/libgdalalljni.so /usr/lib \
     # Install Arrow C++
     && DEBIAN_FRONTEND=noninteractive apt-get install -y -V ca-certificates lsb-release wget \
     && wget https://apache.jfrog.io/artifactory/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb \
