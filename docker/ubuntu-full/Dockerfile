@@ -274,10 +274,10 @@ ARG GDAL_REPOSITORY=OSGeo/gdal
 
 ##################### K2-modif ###################
 
-COPY ./teigha_248/Architecture_lnxX64_8.3dll_24.8.tar.gz Architecture_lnxX64_8.3dll.tar.gz
-COPY ./teigha_248/Kernel_lnxX64_8.3dll_24.8.tar.gz Kernel_lnxX64_8.3dll.tar.gz
-COPY ./teigha_248/Drawings_lnxX64_8.3dll_24.8.tar.gz Drawings_lnxX64_8.3dll.tar.gz
-COPY ./teigha_248/OdActivationInfo OdActivationInfo
+COPY ./teigha/Architecture_lnxX64_11dll_24.8.tar.gz Architecture_lnxX64_11dll.tar.gz
+COPY ./teigha/Kernel_lnxX64_11dll_24.8.tar.gz Kernel_lnxX64_11dll.tar.gz
+COPY ./teigha/Drawings_lnxX64_11dll_24.8.tar.gz Drawings_lnxX64_11dll.tar.gz
+COPY ./teigha/OdActivationInfo OdActivationInfo
 
 ##################################################
 

@@ -72,22 +72,22 @@ See [CITATION](CITATION) and [CITATION.cff](CITATION.cff)
 
 ## K2 `ubuntu-full` GDAL docker image build recipe with Teigha/ODA
 
-1. Put the files in a folder inside the `ubuntu-full` folder, e.g. `docker/ubuntu-full/teigha_248`:
+1. Put the files in a folder inside the `ubuntu-full` folder, e.g. `docker/ubuntu-full/teigha`:
 
 ```
-docker/ubuntu-full/teigha_248/Architecture_lnxX64_8.3dll_24.8.tar.gz
-docker/ubuntu-full/teigha_248/Drawings_lnxX64_8.3dll_24.8.tar.gz
-docker/ubuntu-full/teigha_248/Kernel_lnxX64_8.3dll_24.8.tar.gz
-docker/ubuntu-full/teigha_248/OdActivationInfo
+docker/ubuntu-full/teigha/Architecture_lnxX64_11dll_24.8.tar.gz
+docker/ubuntu-full/teigha/Drawings_lnxX64_11dll_24.8.tar.gz
+docker/ubuntu-full/teigha/Kernel_lnxX64_11dll_24.8.tar.gz
+docker/ubuntu-full/teigha/OdActivationInfo
 ```
 
 2. Make sure that the files are properly copied in the Dockerfile:
 
 ```
-COPY ./teigha_248/Architecture_lnxX64_8.3dll_24.8.tar.gz Architecture_lnxX64_8.3dll.tar.gz
-COPY ./teigha_248/Drawings_lnxX64_8.3dll_24.8.tar.gz Drawings_lnxX64_8.3dll.tar.gz
-COPY ./teigha_248/Kernel_lnxX64_8.3dll_24.8.tar.gz Kernel_lnxX64_8.3dll.tar.gz
-COPY ./teigha_248/OdActivationInfo OdActivationInfo
+COPY ./teigha/Architecture_lnxX64_8.3dll_24.8.tar.gz Architecture_lnxX64_11dll.tar.gz
+COPY ./teigha/Drawings_lnxX64_8.3dll_24.8.tar.gz Drawings_lnxX64_11dll.tar.gz
+COPY ./teigha/Kernel_lnxX64_8.3dll_24.8.tar.gz Kernel_lnxX64_11dll.tar.gz
+COPY ./teigha/OdActivationInfo OdActivationInfo
 ```
 
 3. If you are running on your VPS, you might want to build the image directly in the docker env of your Minikube, where it will be directly available:

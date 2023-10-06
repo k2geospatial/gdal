@@ -12,10 +12,9 @@ if [ -z "${GDAL_BUILD_IS_RELEASE:-}" ]; then
     export GDAL_SHA1SUM=${GDAL_VERSION}
 fi
 
-
 ##################### K2-modif ###################
 
-GCC_VERSION=8.3
+GCC_VERSION=11
 TEIGHA_PATH=/base_${GCC_VERSION}
 
 mkdir $TEIGHA_PATH
